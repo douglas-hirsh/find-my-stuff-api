@@ -3,6 +3,7 @@ from typing import List
 from pydantic import BaseModel
 from db.session import engine
 from db.base_class import Base
+from db.base import Base
 
 from core.config import settings
 
