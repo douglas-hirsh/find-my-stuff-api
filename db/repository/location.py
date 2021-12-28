@@ -30,3 +30,8 @@ def update_location(location_in_db: Location, location: CreateLocation, db: Sess
     db.commit()
     db.refresh(location_in_db)
     return location_in_db
+
+def delete_location(location_in_db: Location, db: Session):
+    db.delete(location_in_db)
+    db.commit()
+    return location_in_db
