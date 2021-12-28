@@ -12,4 +12,8 @@ def create_new_location(location: CreateLocation, db: Session, current_user: Use
     db.add(location)
     db.commit()
     db.refresh(location)
-    return location    
+    return location
+
+def get_all_locations(db: Session, current_user: User):
+    locations = db.query(Location).filter(Location.owner_id == current_user.id).all()
+    return locations

@@ -43,7 +43,7 @@ def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(),db: 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login/token")  #new
 
 #new function, It works as a dependency
-def get_current_user_from_token(token: str = Depends(oauth2_scheme),db: Session=Depends(get_db)): 
+def get_current_user_from_token(token: str = Depends(oauth2_scheme),db: Session=Depends(get_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
