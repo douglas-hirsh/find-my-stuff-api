@@ -8,6 +8,7 @@ from db.base_class import Base
 from db.base import Base
 from api.version1 import route_users
 from api.version1 import route_login 
+from api.version1 import route_locations 
 from sqlalchemy.orm import Session
 
 from core.config import settings
@@ -27,36 +28,9 @@ app = start_application()
 
 app.include_router(route_users.router, prefix="/users", tags=["users"])
 app.include_router(route_login.router, prefix="/login", tags=["login"])
+app.include_router(route_locations.router, prefix="/locations", tags=["locations"])
 
 @app.get("/")
 async def root(current_user:User = Depends(get_current_user_from_token)):
     return {"message": f"Hello World {current_user.username}!"}
-
-@app.get("/locations", response_model=List[ShowLocation])
-async def get_locations():
-    return {"Locations": "Data"}
-
-@app.post("/locations", response_model=ShowLocation)
-async def create_location(location: CreateLocation, db: Session = Depends(get_db), current_user:User = Depends(get_current_user_from_token)):
-    location = create_new_location(location, db, current_user)
-    return location
-
-@app.put("/locations/{location_id}")
-async def update_locations(location_id: int, location: CreateLocation):
-
-    existing_location = None
-    print(existing_location)
-
-    if existing_location:
-        existing_location.dict().update(location.dict())
-
-        return existing_location
-    else:
-        return {"error": f"Location with id {location_id} not found."}, 404
-
-    
-
-@app.get("/locations/{id}")
-async def get_location(id: int):
-    return {"data": {"name": f"Location {id}", "id": id}}
 
