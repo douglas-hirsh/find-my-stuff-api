@@ -9,7 +9,6 @@ class CreateLocation(LocationBase):
     pass
 
 class ShowLocation(LocationBase):
-    owner: ShowUser
-
+    id: int
     class Config():
         orm_mode = True

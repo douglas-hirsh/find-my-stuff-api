@@ -13,7 +13,7 @@ router = APIRouter()
 @router.get("/", response_model=List[ShowLocation])
 async def get_locations(db: Session = Depends(get_db), current_user:User = Depends(get_current_user_from_token)):
     print('hello')
-    locations = get_all_locations(db, User(id=1))
+    locations = get_all_locations(db, current_user)
     print(locations)
     return locations
 
