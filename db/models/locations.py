@@ -6,5 +6,5 @@ from db.base_class import Base
 class Location(Base):
     id = Column(Integer, primary_key=True, autoincrement=True, index=True)
     name = Column(String, nullable=False)
-    ownwer_id = Column(Integer, ForeignKey('user.id'))
+    owner_id = Column(Integer, ForeignKey('user.id'))
     owner = relationship("User", back_populates="locations")
