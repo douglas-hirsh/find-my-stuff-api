@@ -5,7 +5,7 @@ from core.config import settings
 from typing import Generator
 
 SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(SQLALCHEMY_DATABASE_URL, echo="debug")
 
 SessionLocal = sessionmaker(autocommit= False, autoflush= False,bind=engine)
 
