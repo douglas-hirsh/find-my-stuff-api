@@ -21,3 +21,12 @@ def get_all_locations(db: Session, current_user: User):
 def get_location_by_id(id: int, db: Session, current_user: User):
     location = db.query(Location).filter(Location.owner_id == current_user.id).filter(Location.id == id).first()
     return location
+
+def update_location(location_in_db: Location, location: CreateLocation, db: Session, current_user: User):
+    print(location_in_db)
+    location_in_db.name = location.name
+
+    db.add(location_in_db)
+    db.commit()
+    db.refresh(location_in_db)
+    return location_in_db
