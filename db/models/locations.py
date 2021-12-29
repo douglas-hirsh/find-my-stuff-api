@@ -8,4 +8,4 @@ class Location(Base):
     name = Column(String, nullable=False)
     owner_id = Column(Integer, ForeignKey('user.id'))
     owner = relationship("User", back_populates="locations")
-    items = relationship("Item", back_populates="location")
+    items = relationship("Item", back_populates="location", cascade="all, delete-orphan")
