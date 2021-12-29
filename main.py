@@ -9,6 +9,7 @@ from db.base import Base
 from api.version1 import route_users
 from api.version1 import route_login 
 from api.version1 import route_locations 
+from api.version1 import route_items 
 from sqlalchemy.orm import Session
 
 from core.config import settings
@@ -29,6 +30,7 @@ app = start_application()
 app.include_router(route_users.router, prefix="/users", tags=["users"])
 app.include_router(route_login.router, prefix="/login", tags=["login"])
 app.include_router(route_locations.router, prefix="/locations", tags=["locations"])
+app.include_router(route_items.router, prefix="/items", tags=["items"])
 
 @app.get("/")
 async def root(current_user:User = Depends(get_current_user_from_token)):
