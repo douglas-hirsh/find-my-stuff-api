@@ -4,7 +4,7 @@ class ItemBase(BaseModel):
     name: str
 
 class CreateItem(ItemBase):
-    location_id: int
+    pass
 
 class ShowItem(ItemBase):
     id: int

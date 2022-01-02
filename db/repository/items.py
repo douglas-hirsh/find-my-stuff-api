@@ -3,8 +3,8 @@ from db.models.items import Item
 from db.models.users import User
 from schemas.items import CreateItem
 
-def create_new_item(item: CreateItem, db: Session, current_user: User):
-    new_item = Item(name=item.name, location_id=item.location_id, owner=current_user)
+def create_new_item(location_id: int, item: CreateItem, db: Session, current_user: User):
+    new_item = Item(name=item.name, location_id=location_id, owner=current_user)
 
     db.add(new_item)
     db.commit()
