@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Request
 from typing import List, Optional
 from pydantic import BaseModel
 from db.models.users import User
@@ -33,6 +33,6 @@ app.include_router(route_locations.router, prefix="/locations", tags=["locations
 app.include_router(route_items.router, prefix="/locations/{location_id}/items", tags=["items"])
 
 @app.get("/")
-async def root(current_user:User = Depends(get_current_user_from_token)):
-    return {"message": f"Hello World {current_user.username}!"}
+async def root(request: Request):
+    return {"message": f"Welcome to the Stuff API! Track your stuff here. Checkout {request.base_url}docs for more information."}
 
